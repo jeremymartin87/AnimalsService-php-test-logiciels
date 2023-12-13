@@ -31,23 +31,32 @@ final class AnimalServiceIntegrationTest extends TestCase
     // test de suppression de toute les données, nécessaire pour nettoyer la bdd de tests à la fin
     public function testDeleteAll()
     {
+        $this->assertTrue(true);
     }
 
 
     public function testCreation()
     {
+        $result = $this->animalService->createAnimal('Tigre', 'Carnivore');
+        $this->assertTrue($result);
     }
 
     public function testSearch()
     {
+        $result = $this->animalService->searchAnimal('Tigre');
+        $this->assertNotNull($result);
     }
 
     public function testModify()
     {
+        $result = $this->animalService->modifyAnimal(1, 'Tigre', 'Herbivore');
+        $this->assertTrue($result);
     }
 
     public function testDelete()
     {
+        $result = $this->animalService->deleteAnimal(1);
+        $this->assertTrue($result);
     }
 
 }

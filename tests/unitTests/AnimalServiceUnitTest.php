@@ -27,23 +27,74 @@ final class AnimalServiceUnitTest extends TestCase {
         $this->animalService = new AnimalService();
     }
 
-
     public function testCreationAnimalWithoutAnyText() {
+        $this->expectException(InvalidInputException::class);
+        $this->animalService->createAnimal('', '');
     }
 
     public function testCreationAnimalWithoutName() {
+        $this->expectException(InvalidInputException::class);
+        $this->animalService->createAnimal('', 'Herbivore');
     }
 
     public function testCreationAnimalWithoutNumber() {
+        $this->expexpectException(InvalidInputException::class);
+        $this->animalService->createAnimal('Mouton', '');
     }
 
     public function testSearchAnimalWithNumber() {
+        $result = $this->animalService->searchAnimalByNumber(123);
+        $this->assertNull($result);
     }
 
     public function testModifyAnimalWithInvalidId() {
+        $this->expectException(InvalidInputException::class);
+        $this->animalService->modifyAnimal(0, 'Trex', 'Carnivore');
     }
 
     public function testDeleteAnimalWithTextAsId() {
+        $this->expectException(InvalidInputException::class);
+        $this->animalService->deleteAnimal('JeSaisPas');
+    }
+
+
+
+
+
+    public function testModifyAnimalWithoutName()
+    {
+        $this->expectException(InvalidInputException::class);
+        $this->animalService->modifyAnimal(1, '', 'Herbivore');
+    }
+
+    public function testModifyAnimalWithoutIdentification()
+    {
+        $this->expectException(InvalidInputException::class);
+        $this->animalService->modifyAnimal(1, 'Mouton');
+    }
+
+    public function testModifyAnimalWithEmptyNumber()
+    {
+        $this->expectException(InvalidInputException::class);
+        $this->animalService->modifyAnimal(1, 'Mouton','');
+    }
+
+    public function testDeleteAnimalWithNegativeId()
+    {
+        $this->expectException(InvalidInputException::class);
+        $this->animalService->deleteAnimal(-5);
+    }
+
+    public function testDeleteAnimalWithoutId()
+    {
+        $this->expectException(InvalidInputException::class);
+        $this->animalService->deleteAnimal();
+    }
+
+    public function testSearchAnimalWithEmptyName()
+    {
+        $this->expectException(InvalidInputException::class);
+        $this->animalService->searchAnimal('');
     }
 
 }
