@@ -49,7 +49,7 @@ final class AnimalServiceIntegrationTest extends TestCase
 
     public function testModify()
     {
-        $result = $this->animalService->modifyAnimal(1, 'Tigre', 'Herbivore');
+        $result = $this->animalService->updateAnimal(1, 'Tigre', 'Herbivore');
         $this->assertTrue($result);
     }
 

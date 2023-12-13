@@ -43,13 +43,13 @@ final class AnimalServiceUnitTest extends TestCase {
     }
 
     public function testSearchAnimalWithNumber() {
-        $result = $this->animalService->searchAnimalByNumber(123);
+        $result = $this->animalService->searchAnimal(123);
         $this->assertNull($result);
     }
 
     public function testModifyAnimalWithInvalidId() {
         $this->expectException(InvalidInputException::class);
-        $this->animalService->modifyAnimal(0, 'Trex', 'Carnivore');
+        $this->animalService->updateAnimal(0, 'Trex', 'Carnivore');
     }
 
     public function testDeleteAnimalWithTextAsId() {
@@ -64,19 +64,19 @@ final class AnimalServiceUnitTest extends TestCase {
     public function testModifyAnimalWithoutName()
     {
         $this->expectException(InvalidInputException::class);
-        $this->animalService->modifyAnimal(1, '', 'Herbivore');
+        $this->animalService->updateAnimal(1, '', 'Herbivore');
     }
 
     public function testModifyAnimalWithoutIdentification()
     {
         $this->expectException(InvalidInputException::class);
-        $this->animalService->modifyAnimal(1, 'Mouton');
+        $this->animalService->updateAnimal(1, 'Mouton');
     }
 
     public function testModifyAnimalWithEmptyNumber()
     {
         $this->expectException(InvalidInputException::class);
-        $this->animalService->modifyAnimal(1, 'Mouton','');
+        $this->animalService->updateAnimal(1, 'Mouton','');
     }
 
     public function testDeleteAnimalWithNegativeId()
